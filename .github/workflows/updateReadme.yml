@@ -35,7 +35,7 @@ jobs:
         echo "latest_resume=$latest_resume" >> $GITHUB_OUTPUT
         
         # Extract date from filename for display
-        if [[ $latest_resume =~ Shreyash_Srivastava_Resume_([0-9]{2})-([0-9]{2})-([0-9]{4})\.pdf ]]; then
+        if [[ $latest_resume =~ Shreyash_Srivastava_Resume_([0-9]{2})-([0-9]{2})-([0-9]{2})\.pdf ]]; then
           day="${BASH_REMATCH[1]}"
           month="${BASH_REMATCH[2]}"
           year="${BASH_REMATCH[3]}"
@@ -77,7 +77,7 @@ jobs:
         git config --local user.email "shreyash.sri09@gmail.com"
         git config --local user.name "Shreyash Srivastava"
         git add README.md
-        git commit -m "Auto-update README with latest resume: ${{ steps.find-resume.outputs.latest_resume }}"
+        git commit -m "📜 Auto-update README with latest resume: ${{ steps.find-resume.outputs.latest_resume }}"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -37,8 +37,8 @@ jobs:
     - name: Generate PDF filename with current date
       id: generate-filename
       run: |
-        # Get current date in DD-MM-YYYY format
-        current_date=$(date +%d-%m-%Y)
+        # Get current date in DD-MM-YY format
+        current_date=$(date +%d-%m-%y)
         filename="Shreyash_Srivastava_Resume_${current_date}.pdf"
         
         echo "Generated filename: $filename"
@@ -68,9 +68,9 @@ jobs:
         if [ -f "$pdf_filename" ] && git ls-files --error-unmatch "$pdf_filename" > /dev/null 2>&1; then
           echo "Removing existing PDF for today..."
           git rm "$pdf_filename"
-          commit_message="🤖 Update resume PDF: $pdf_filename"
+          commit_message="📜 Update resume PDF: $pdf_filename"
         else
-          commit_message="🤖 Generate new resume PDF: $pdf_filename"
+          commit_message="📜 Generate new resume PDF: $pdf_filename"
         fi
         
         # Add the new PDF
