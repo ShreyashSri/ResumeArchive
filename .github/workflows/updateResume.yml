@@ -1,4 +1,4 @@
-name: Convert LaTeX to PDF
+name: Update Resume and Deploy to GitHub Pages
 
 on:
   push:
@@ -45,43 +45,21 @@ jobs:
         echo "pdf_filename=$filename" >> $GITHUB_OUTPUT
         echo "current_date=$current_date" >> $GITHUB_OUTPUT
 
-    - name: Prepare file for deployment
+    - name: Commit PDF to Main Branch
       run: |
         pdf_filename="${{ steps.generate-filename.outputs.pdf_filename }}"
-        cp main.pdf "$pdf_filename"
-        # Copy for GitHub Pages
-        cp main.pdf Shreyash_Srivastava_Resume.pdf
-        # creating index.html for GitHub Pages
-        echo '<!DOCTYPE html><html><head><title>Latest Resume - Shreyash Srivastava</title><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><style>html,body{margin:0;height:100%;background:#f9f9f9}embed{width:100%;height:100%;border:none}</style></head><body><embed src="Shreyash_Srivastava_Resume.pdf" type="application/pdf" /></body></html>' > index.html
-        echo "✅ Files prepared for deployment"
-        ls -la *.pdf
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
-        publish_branch: gh-pages
-        force_orphan: true
-
-    - name: Rename PDF and prepare for commit
-      run: |
-        pdf_filename="${{ steps.generate-filename.outputs.pdf_filename }}"
-        
-        # Copy to new filename (keeping original for reference)
-        cp main.pdf "$pdf_filename"
-        
-        echo "PDF copied to: $pdf_filename"
-        ls -la *.pdf
+        current_date="${{ steps.generate-filename.outputs.current_date }}"
         
         # Configure git
         git config --global user.name "Shreyash Srivastava"
         git config --global user.email "shreyash.sri09@gmail.com"
     
-    - name: Check if PDF already exists and commit
-      run: |
-        pdf_filename="${{ steps.generate-filename.outputs.pdf_filename }}"
-        current_date="${{ steps.generate-filename.outputs.current_date }}"
+        # Ensure we are on main branch and up to date
+        git checkout main
+        git pull origin main
+        
+        # Copy compiled pdf to the dated filename
+        cp main.pdf "$pdf_filename"
         
         # Check if file exists and remove old version if it does
         if git ls-files --error-unmatch "$pdf_filename" > /dev/null 2>&1; then
@@ -102,7 +80,26 @@ jobs:
           git push origin main
           echo "✅ PDF committed and pushed successfully!"
         fi
-    
+
+    - name: Prepare file for GitHub Pages
+      run: |
+        # We need a static name for the embedded view on the website
+        cp main.pdf Shreyash_Srivastava_Resume.pdf
+        
+        # Creating index.html for GitHub Pages
+        echo '<!DOCTYPE html><html><head><title>Latest Resume - Shreyash Srivastava</title><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><style>html,body{margin:0;height:100%;background:#f9f9f9}embed{width:100%;height:100%;border:none}</style></head><body><embed src="Shreyash_Srivastava_Resume.pdf" type="application/pdf" /></body></html>' > index.html
+        
+        echo "✅ Files prepared for deployment"
+        ls -la
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
+        force_orphan: true
+
     - name: Create summary
       run: |
         pdf_filename="${{ steps.generate-filename.outputs.pdf_filename }}"
@@ -112,10 +109,4 @@ jobs:
         echo "- **Source File:** \`main.tex\`" >> $GITHUB_STEP_SUMMARY
         echo "- **Generated PDF:** \`$pdf_filename\`" >> $GITHUB_STEP_SUMMARY
         echo "- **Date:** $current_date" >> $GITHUB_STEP_SUMMARY
-        echo "- **Status:** ✅ Successfully converted and committed" >> $GITHUB_STEP_SUMMARY
-        
-        # Get file size
-        if [ -f "$pdf_filename" ]; then
-          file_size=$(ls -lh "$pdf_filename" | awk '{print $5}')
-          echo "- **File Size:** $file_size" >> $GITHUB_STEP_SUMMARY
-        fi
+        echo "- **Status:** ✅ Successfully converted, committed, and deployed" >> $GITHUB_STEP_SUMMARY
