@@ -44,7 +44,26 @@ jobs:
         echo "Generated filename: $filename"
         echo "pdf_filename=$filename" >> $GITHUB_OUTPUT
         echo "current_date=$current_date" >> $GITHUB_OUTPUT
-    
+
+    - name: Prepare file for deployment
+      run: |
+        pdf_filename="${{ steps.generate-filename.outputs.pdf_filename }}"
+        cp main.pdf "$pdf_filename"
+        # Copy for GitHub Pages
+        cp main.pdf Shreyash_Srivastava_Resume.pdf
+        # creating index.html for GitHub Pages
+        echo '<!DOCTYPE html><html><head><title>Latest Resume - Shreyash Srivastava</title><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><style>html,body{margin:0;height:100%;background:#f9f9f9}embed{width:100%;height:100%;border:none}</style></head><body><embed src="Shreyash_Srivastava_Resume.pdf" type="application/pdf" /></body></html>' > index.html
+        echo "✅ Files prepared for deployment"
+        ls -la *.pdf
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
+        force_orphan: true
+
     - name: Rename PDF and prepare for commit
       run: |
         pdf_filename="${{ steps.generate-filename.outputs.pdf_filename }}"
@@ -65,9 +84,8 @@ jobs:
         current_date="${{ steps.generate-filename.outputs.current_date }}"
         
         # Check if file exists and remove old version if it does
-        if [ -f "$pdf_filename" ] && git ls-files --error-unmatch "$pdf_filename" > /dev/null 2>&1; then
-          echo "Removing existing PDF for today..."
-          git rm "$pdf_filename"
+        if git ls-files --error-unmatch "$pdf_filename" > /dev/null 2>&1; then
+          echo "PDF for today already exists in repository, updating it..."
           commit_message="📜 Update resume PDF: $pdf_filename"
         else
           commit_message="📜 Generate new resume PDF: $pdf_filename"
