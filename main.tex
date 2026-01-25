@@ -46,15 +46,17 @@
 % Custom commands
 \newcommand{\resumeItem}[2]{
   \item\small{
+    {#2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSkillItem}[2]{
+  \item\small{
     \textbf{#1}{: #2 \vspace{-2pt}}
   }
 }
 
-\newcommand{\resumeItemWithoutTitle}[1]{
-  \item\small{
-    {#1\vspace{-2pt}}
-  }
-}
+\newcommand{\resumeSubItem}[2]{\resumeSkillItem{#1}{#2}\vspace{-3pt}}
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{-1pt}\item
@@ -64,11 +66,9 @@
     \end{tabular*}\vspace{-5pt}
 }
 
-\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-3pt}}
+\renewcommand{\labelitemii}{$\bullet$}
 
-\renewcommand{\labelitemii}{$\circ$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
@@ -98,9 +98,8 @@
 \section{Skills Summary}
   \resumeSubHeadingListStart
     \resumeSubItem{Languages}{Python, Golang, TypeScript}
-    \resumeSubItem{Libraries/Frameworks}{Gin, Next.js, Flask, Django}
-    \resumeSubItem{Databases/Tools}{Git, Github Actions, PostgreSQL, MongoDB}
-    \resumeSubItem{Platforms}{Linux, Windows}
+    \resumeSubItem{Technologies/Frameworks}{Gin, Next.js, Flask, Django}
+    \resumeSubItem{Databases/Tools}{Git, CI/CD, PostgreSQL, MongoDB, Docker, Monitoring}
   \resumeSubHeadingListEnd
 
 %-----------Experience-----------------
@@ -108,66 +107,69 @@
 \section{Experience}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Seeqlo} { Remote}
-      {Full-Stack Developer: React, JavaScript, Firebase}{Aug 2025 - Present}
+      {Seeqlo} {Remote}
+      {Full-Stack Developer: React, Go (Gin), Firebase, Stripe}{Aug 2025 -- Present}
     \resumeItemListStart
-        \resumeItem{Token-Based Credit System}
-          {Implemented a credit system utilizing a \textbf{token usage} model to manage \textbf{user access} and \textbf{resource allocation}.}
-        \resumeItem{Codebase Refactoring}
-          {Enhanced code maintainability and scalability by refactoring \textbf{monolithic} files into \textbf{modular, reusable components}.}
-        \resumeItem{Community Administration Module}
-          {Developed a dedicated interface for community \textbf{admins} to \textbf{monitor} user activity and \textbf{manage} platform content.}
-    \resumeItemListEnd
-    \resumeSubheading
-      {Ignito Co.} { Remote}
-      {Full-Stack Developer: Golang, NextJS, MongoDB, Supabase}{July 2025 – Aug 2025}
-    \resumeItemListStart
-          \resumeItem{Inventory Management System}
-            {Developed an inventory management system using \textbf{Next.js} and \textbf{Supabase} to process and store large Excel datasets.}
-          \resumeItem{Optimized the data pipeline}
-            {Reduced file processing time from \textbf{7 minutes to 16 seconds}.}
-          \resumeItem{PO Tracking Application}
-            {Built a \textbf{full-stack} application to \textbf{manage} and \textbf{track} lifecycle of purchase bills, purchase orders (POs), In and Out Entries.}
-          \resumeItem{API Development/Backend}{Developed RESTful APIs with \textbf{Golang (Gin)} to handle CRUD operations, utilized \textbf{MongoDB} for data storage.}
+        \resumeItem{}
+          {Integrated \textbf{Stripe} for secure payments and implemented a \textbf{token-based credit system} to control user access and resource consumption.}
+        \resumeItem{}
+          {Migrated a legacy backend from \textbf{Express.js} to \textbf{Go (Gin)} to enhance performance, and refactored a monolithic codebase into modular components to improve maintainability.}
+        \resumeItem{}
+          {Built a community administration interface enabling admins to \textbf{monitor user activity} and \textbf{manage platform content}.}
     \resumeItemListEnd
 
     \resumeSubheading
-      {Kharagpur Winter of Code} {Remote}
-      {Contributor at Eventica: Javascript, CSS, HTML}{Nov 2024 – Feb 2025}
+      {Ignito Co.} {Remote}
+      {Full-Stack Developer: Go (Gin), Next.js, MongoDB, Supabase}{July 2025 -- Aug 2025}
     \resumeItemListStart
-        \resumeItem{Responsive UI/UX Development}
-          {Implemented \textbf{responsiveness} and \textbf{compatibility} across all devices, fixed \textbf{inconsistencies} in \textbf{theme-switching} feature.}
+        \resumeItem{}
+          {Built an inventory management system using \textbf{Next.js} and \textbf{Supabase} to ingest and process large Excel datasets, optimizing the pipeline to reduce processing time from \textbf{7 minutes to 16 seconds}.}
+        \resumeItem{}
+          {Engineered a \textbf{full-stack} application using \textbf{Go (Gin)} and \textbf{MongoDB} to manage the end-to-end lifecycle of purchase orders, bills, and inventory tracking via scalable RESTful APIs.}
     \resumeItemListEnd
+
     \resumeSubHeadingListEnd
 
-%-----------PROJECTS-----------------
+%-----------OPEN SOURCE CONTRIBUTIONS AND PROJECTS-----------------
 \vspace{-5pt}
-\section{Projects}
+\section{Open Source Contributions \& Projects}
   \resumeSubHeadingListStart
 
-    \resumeSubheading{LiquidPay}
-    {\href{https://github.com/ShreyashSri/LiquidPay}{\faGithub\ LiquidPay}}
-    {All-in-one banking and finance dashboard}{}
+    \resumeSubheading{Kharagpur Winter of Code – KWoC Backend} {\href{https://github.com/kossiitkgp/KWoC-Backend/pull/197}{\faGithub\ KWoC}}
+      {Backend \& Observability Contributor}{}
     \resumeItemListStart
-        \resumeItem{}{Built a website to track transactions and classify spending as \textbf{needs} vs. \textbf{wants}.}
-        \resumeItem{}{Suggested expenditure-\textbf{reduction} goals and integrated a \textbf{reward coin} system.}
-        \resumeItem{}{Tech Stack: \textit{Next.js, JavaScript, TensorFlow, Gemini API}}
+        \resumeItem{}
+          {Added a production-grade observability stack using \textbf{Prometheus, Grafana, Node Exporter, and Alertmanager}.}
+        \resumeItem{}
+          {Implemented automated alerts for server downtime and resource threshold breaches with \textbf{Slack-based notifications}.}
     \resumeItemListEnd
 
-    \resumeSubheading{Career Portal}
-    {\href{https://career-portal-37i9.onrender.com}{\faGithub\ Career-Portal}}
-    {Centralized opportunity board for students}{}
+    \resumeSubheading{OpenTelemetry Operator} 
+    {\href{https://github.com/open-telemetry/opentelemetry-operator}
+    {\faGithub\ OpenTel}}
+      {Open Source Contributor}{}
     \resumeItemListStart
-        \resumeItem{}{Deployed a platform for listing student opportunities with \textbf{admin dashboard} to manage posts.}
-        \resumeItem{}{Tech Stack: \textit{Flask, HTML, CSS, MongoDB}}
+        \resumeItem{}
+          {Implemented automated Markdown link validation using \textbf{Linkspector} with \textbf{GitHub Actions}, running on pull requests and a weekly cron schedule to prevent documentation regressions.}
+        \resumeItem{}
+          {Deprecated the \textbf{volumeSizeLimit} field across all language-specific instrumentations and added a \textbf{validating webhook} to emit warnings for deprecated usage.}
     \resumeItemListEnd
 
-    \resumeSubheading{VendIN} {\href{https://vendin.onrender.com/}{\faGithub\ VendIn}}
-    {Vendor discovery and visibility platform}{}
-    \resumeItemListStart
-        \resumeItem{}{Enabled users to explore hidden \textbf{vendors}, unique events, and local hotspots.}
-        \resumeItem{}{Combined a \textbf{Django} backend with an interactive frontend using JavaScript.}
-        \resumeItem{}{Tech Stack: \textit{Django, HTML, CSS, JavaScript, SQLite}}
+    \resumeSubheading{Penguin}
+        {\href{https://github.com/ShreyashSri/Penguin}
+        {\faGithub\ Penguin}}
+        {Authenticated AI art generation and provenance framework}{}
+        \resumeItemListStart
+        \resumeItem{}
+          {Built a secure pipeline for AI-generated content using \textbf{cryptographic signing}, \textbf{steganographic watermarking}, and \textbf{immutable blockchain provenance}.}
+        \resumeItem{O}
+          {Stored tamper-proof asset manifests on \textbf{Ethereum Sepolia} smart contracts to enable verifiable ownership and creation history.}
+        \resumeItem{}
+          {Integrated \textbf{IPFS} via \textbf{Pinata} for decentralized, content-addressed asset storage.}
+        \resumeItem{}
+          {Enabled deterministic AI art generation with embedded creator identity using \textbf{Ed25519} and \textbf{BLAKE3/SHA-256}.}
+        \resumeItem{}
+          {Developed a browser extension to capture prompts from web interfaces and certify assets at creation time.}
     \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -175,11 +177,11 @@
 %-----------ACHIEVEMENTS-----------------
 \vspace{-5pt}
 \section{Achievements}
-  \begin{itemize}
-    \item Recipient of the \textbf{LiFT Scholarship} awarded by The Linux Foundation - June 2025
-    \item Won Coding Relay held at Dayananda Sagar College of Engineering – March 2025
-    \item Ranked Top 9 out of 63 teams in HackOasis V2 Hackathon – November 2024
-  \end{itemize}
+  \resumeItemListStart
+    \resumeItem {}{Recipient of the \textbf{LiFT Scholarship} awarded by The Linux Foundation - June 2025}
+    \resumeItem {}{Won Coding Relay held at Dayananda Sagar College of Engineering – March 2025}
+    \resumeItem {}{Ranked Top 9 out of 63 teams in HackOasis V2 Hackathon – November 2024}
+  \resumeItemListEnd
 
 %-----------VOLUNTEER EXPERIENCE-----------------
 \vspace{-5pt}
@@ -189,14 +191,10 @@
       {Member, PointBlank}{Bangalore, India}
       {A community focused on developing industry-ready engineers and well-rounded individuals.}{Dec 2024 – Present}
       \resumeItemListStart
-        \resumeItem{PointBlank Website}
-          {Maintained and enhanced the PointBlank Website and Careers page.}
-        \resumeItem{Backend \& API Development}
-          {Integrated \textbf{Swagger documentation}, fixed \textbf{Cloudinary} related issues.}
-        \resumeItem{Github Actions}
-          {Fixed \textbf{GitHub Actions build} and \textbf{labeller} failures, \textbf{automated} database backups with \textbf{cron job}.}
-        \resumeItem{Tech Stack}
-            {\textit{NextJS, Typescript, MongoDB, Cloudinary}}
+        \resumeItem{}
+          {Maintained and enhanced the PointBlank, Zenith and Careers Website.}
+        \resumeItem{}
+          {Integrated \textbf{Swagger documentation}, resolved \textbf{Cloudinary} issues, and improved \textbf{CI reliability} by fixing build/labeller failures and automating database backups via \textbf{cron job}.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
