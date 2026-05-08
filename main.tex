@@ -1,0 +1,207 @@
+%------------------------
+% Resume Template
+% Author : Shreyash Srivastava
+% Github : https://github.com/ShreyashSri
+% License : MIT
+%------------------------
+
+\documentclass[a4paper,20pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.530in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.45in}
+\addtolength{\textheight}{1in}
+
+\urlstyle{rm}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    {#2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSkillItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeSkillItem{#1}{#2}\vspace{-3pt}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\renewcommand{\labelitemii}{$\bullet$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-----------------------------
+%%%%%%  CV STARTS HERE  %%%%%%
+
+\begin{document}
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{{\LARGE Shreyash Srivastava}} & Mobile: +91-9305115681 \\
+  Email: \href{mailto:shreyash.sri09@gmail.com}{shreyash.sri09@gmail.com} & \href{https://www.shreyashsri.xyz}{\underline{Portfolio}} \\
+  \href{https://www.linkedin.com/in/ShreyashSri/}{\underline{LinkedIn}} & \href{https://github.com/ShreyashSri}{\underline{GitHub}} \\
+  \href{https://medium.com/@ShreyashSri}{\underline{Blog}} & \\
+\end{tabular*}
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Dayananda Sagar College of Engineering}{Bangalore, India}
+      {Bachelor of Engineering in Computer Science; GPA: 8.75}{July 2024 – Present}
+  \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------------
+\vspace{-5pt}
+\section{Skills Summary}
+  \resumeSubHeadingListStart
+    \resumeSubItem{Languages}{Python, Golang, TypeScript}
+    \resumeSubItem{Technologies/Frameworks}{Gin, Next.js, Flask, Django}
+    \resumeSubItem{Databases/Tools}{Git, CI/CD, PostgreSQL, MongoDB, Docker, Monitoring tools}
+  \resumeSubHeadingListEnd
+
+%-----------Experience-----------------
+\vspace{-5pt}
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Seeqlo} {Remote}
+      {Full-Stack Developer: React, Go (Gin), Firebase, Stripe}{Aug 2025 -- Feb 2026}
+    \resumeItemListStart
+        \resumeItem{}
+          {Integrated \textbf{Stripe} for secure payments and implemented a \textbf{token-based credit system} to control user access and resource consumption.}
+        \resumeItem{}
+          {Migrated a legacy backend from \textbf{Express.js} to \textbf{Go (Gin)} to enhance performance, and refactored a monolithic codebase into modular components to improve maintainability.}
+        \resumeItem{}
+          {Built a community administration interface enabling admins to \textbf{monitor user activity} and \textbf{manage platform content}.}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {Ignito Co.} {Remote}
+      {Full-Stack Developer: Go (Gin), Next.js, MongoDB, Supabase}{July 2025 -- Aug 2025}
+    \resumeItemListStart
+        \resumeItem{}
+          {Built an inventory management system using \textbf{Next.js} and \textbf{Supabase} to ingest and process large Excel datasets, optimizing the pipeline to reduce processing time from \textbf{7 minutes to 16 seconds}.}
+        \resumeItem{}
+          {Engineered a \textbf{full-stack} application using \textbf{Go (Gin)} and \textbf{MongoDB} to manage the end-to-end lifecycle of purchase orders, bills, and inventory tracking via scalable RESTful APIs.}
+    \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------OPEN SOURCE CONTRIBUTIONS AND PROJECTS-----------------
+\vspace{-5pt}
+\section{Open Source Contributions \& Projects}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading{Debian - Salsa CI} {\href{https://salsa.debian.org/salsa-ci-team/pipeline}{\faGitlab\ Salsa}}
+      {Open Source Contributor}{}
+    \resumeItemListStart
+        \resumeItem{}
+          {Migrated the base-image build pipeline to use \textbf{mmdebstrap} and \textbf{buildah}, replacing external \textbf{Docker Hub} pulls with native archive builds to resolve rate-limiting errors.}
+        \resumeItem{}
+          {Added CI test case for the \textbf{Debian Trixie} release, utilizing the \textbf{grep} package to validate build compatibility and testing environment readiness.}
+    \resumeItemListEnd
+
+    \resumeSubheading{OpenTelemetry Operator} 
+    {\href{https://github.com/open-telemetry/opentelemetry-operator}
+    {\faGithub\ OpenTel}}
+      {Open Source Contributor}{}
+    \resumeItemListStart
+        \resumeItem{}
+          {Implemented automated Markdown link validation using \textbf{Linkspector} with \textbf{GitHub Actions}, running on pull requests and a weekly \textbf{cron} schedule to prevent documentation regressions.}
+        \resumeItem{}
+          {Deprecated the \textbf{volumeSizeLimit} field across all language-specific instrumentations and added a \textbf{validating webhook} to emit warnings for deprecated usage.}
+    \resumeItemListEnd
+
+    \resumeSubheading{Kharagpur Winter of Code – KWoC Backend} {\href{https://github.com/kossiitkgp/KWoC-Backend/pull/197}{\faGithub\ KWoC}}
+      {Backend \& Observability Contributor}{}
+    \resumeItemListStart
+        \resumeItem{}
+          {Added a production-grade observability stack using \textbf{Prometheus, Grafana, Node Exporter, and Alertmanager}.}
+        \resumeItem{}
+          {Implemented automated alerts for server downtime and resource threshold breaches with \textbf{Slack-based notifications}.}
+    \resumeItemListEnd
+
+    \resumeSubheading{Penguin}
+        {\href{https://github.com/ShreyashSri/Penguin}
+        {\faGithub\ Penguin}}
+        {Authenticated AI art generation and provenance framework}{}
+        \resumeItemListStart
+        \resumeItem{}
+          {Developed a secure framework and browser extension to capture web prompts and generate deterministic AI art, embedding creator identity via \textbf{steganographic watermarking}, \textbf{Ed25519}, and \textbf{BLAKE3/SHA-256}.}
+        \resumeItem{}
+          {Enabled verifiable ownership and immutable provenance by storing tamper-proof asset manifests on \textbf{Ethereum Sepolia} smart contracts, coupled with \textbf{Pinata IPFS} for decentralized storage.}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------ACHIEVEMENTS-----------------
+\vspace{-5pt}
+\section{Achievements}
+  \resumeItemListStart
+    \resumeItem {}{Won Unique Idea award at Hack-Nocturne '26 held at SMVIT - March 2026}
+    \resumeItem {}{Recipient of the \textbf{LiFT Scholarship} awarded by The Linux Foundation - June 2025}
+    \resumeItem {}{Won Coding Relay held at Dayananda Sagar College of Engineering – March 2025}
+    \resumeItem {}{Ranked Top 9 out of 63 teams in HackOasis V2 Hackathon – November 2024}
+  \resumeItemListEnd
+
+%-----------VOLUNTEER EXPERIENCE-----------------
+\vspace{-5pt}
+\section{Volunteer Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Member, PointBlank}{Bangalore, India}
+      {A community focused on developing industry-ready engineers and well-rounded individuals.}{Dec 2024 – Present}
+      \resumeItemListStart
+        \resumeItem{}
+          {Maintained and enhanced the PointBlank, Zenith and Careers Website.}
+        \resumeItem{}
+          {Integrated \textbf{Swagger documentation}, resolved \textbf{Cloudinary} issues, and improved \textbf{CI reliability} by fixing build/labeller failures and automating database backups via \textbf{cron job}.}
+        \resumeItem{}
+          {Implemented monitoring stack using \textbf{Prometheus} and \textbf{Grafana} for metrics visualization, automating Kubernetes deployments via the \textbf{ArgoCD} Apps of Apps pattern.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\end{document}
